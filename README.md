@@ -1,2 +1,2 @@
-# JMU-IT-Drone-Capstone-2023
+# Overview
 Building on JMU IT's capstone from 2022, our team is working towards integrating the object-detection functionalities of the drone to work with JMU's autonomous cart, aka the JACart. The current goal is to configure the drone to receive coordinates for the JACart's location, have the drone fly to these coordinates, start recording video clips once it's within range, and securely transmit these recordings to a server with ML object-detection capabilities. From there, an alert should be sent to the appropriate entity.
