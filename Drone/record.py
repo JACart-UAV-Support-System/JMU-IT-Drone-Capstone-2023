@@ -8,7 +8,7 @@
   catch up. I originally wanted to use the photo or webcam functionality instead to transmit images at a faster rate, but numerous issues 
   I had with these goprocam functions encouraged me to stick with video recordings instead.
   
-  Since we'd also like to receive footage as soon as possible, this script has removed any encryption functionality. That's handled by send_photos.py,
+  Since we'd also like to receive footage as soon as possible, this script has removed any encryption functionality. That's handled by send_videos.py,
   which encrypts each video with an AES secret key (AEX mode), sends them to a Base LAN server, and removes each video once it's been sent.
   
   Note that if this code is halted in the middle of a recording, the GoPro will continue
