@@ -1,3 +1,18 @@
+'''
+   This script is intended to receive and decrypt recorded videos from the drone's GoPro. Once these videos are received and decrypted,
+   they'll need to be sent to a cloud instance for ML object-detection (and more), but that functionality hasn't been created as of yet.
+   
+   Currently, this script (along with the corresponding receive_videos.py script on Base LAN server) are written to account for errors
+   in transmission, but this functionality isn't fully working yet. The current goal is to detect if a video has been / is being properly
+   sent, and if so, discard the incomplete file on both ends and move on to the next recording. However, while this sort-of works,
+   the receiving end sometimes gets the wrong name of the next video, or each video that's sent after a failed video can't be properly opened.
+   
+   There needs to be a check for determining if an .mp4 that has been 'successfully' received is actually readable before sending it off to the
+   cloud. Speaking of, since these videos are eventually going to spliced into frames, it may also make sense to split each video into frames,
+   save each frame in chronological order to another directory, and have another script encrypt and send these frames to the cloud for object-
+   detection instead of sending more videos.
+'''
+
 import socket
 import os
 from Crypto.Cipher import AES
