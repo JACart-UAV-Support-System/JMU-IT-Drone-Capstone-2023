@@ -1,3 +1,16 @@
+'''
+   This script is intended to securely send recorded videos from the drone's GoPro as soon as downloaded videos are
+   available in the proper directory. The script binds to a remote socket server, checks for the latest video file, encrypts
+   the video file with AES shared key (EAX mode), and sends metadata + footage bytes to the Base LAN socket server for decryption.
+   
+   Currently, this script (along with the corresponding receive_videos.py script on Base LAN server) are written to account for errors
+   in transmission, but this functionality isn't fully working yet. The current goal is to detect if a video has been / is being properly
+   sent, and if so, discarding the incomplete file on both ends and moving on to the next recording. However, while this sort-of works,
+   the receiving end sometimes gets the wrong name of the next video, or each video that's sent after a failed video can't be properly opened.
+   I think this is because of the receiving end getting the wrong byte/s to interpret the beginning of the next .mp4 file, but I'll need to
+   continue testing to see.
+'''
+
 import os
 import time
 import socket
