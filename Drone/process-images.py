@@ -1,3 +1,8 @@
+"""
+Uses YOLOv8n weights trained on our custom dataset to detect objects in photos taken by the drone.
+Saves the annotated images and corresponding text files to a new directory for alerts via email-images.py.
+"""
+
 import os
 import time
 from shutil import rmtree, move
