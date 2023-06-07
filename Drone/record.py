@@ -1,5 +1,6 @@
 '''
-  This script is responsible for connecting to the GoPro and taking
+  This script is responsible for connecting to the GoPro and recording video once it's within
+  a set radius of the given coordinates.
   
   This script runs when the camera should be recording. The "interval" file is used to get
   the recording time chunk in seconds - eg, if "interval" contains "5", the gopro will
