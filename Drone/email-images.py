@@ -1,3 +1,8 @@
+"""
+Emails images with objects detected via process-images.py as an alert via Gmail SMTP, 
+continously looks for files in given directory so they can be sent as soon as they're available.
+"""
+
 import os
 import ssl
 import smtplib
@@ -31,7 +36,7 @@ class_dict = {
 	7: 'Awning-tricycle',
 	8: 'Bus',
 	9: 'Motor',
-  10: 'JACart'
+        10: 'JACart'
 }
 
 def emailImages():
