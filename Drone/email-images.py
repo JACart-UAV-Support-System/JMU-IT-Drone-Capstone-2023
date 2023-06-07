@@ -1,6 +1,8 @@
 """
 Emails images with objects detected via process-images.py as an alert via Gmail SMTP, 
 continously looks for files in given directory so they can be sent as soon as they're available.
+
+If the directory is empty, the terminal will print "min() arg is an empty sequence" until new images populate the directory.
 """
 
 import os
@@ -10,7 +12,6 @@ import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 from pathlib import Path
-from shutil import move
 
 # Set up Gmail SMTP server with app password for this script. Will update so the credentials aren't
 # stored as plaintext
@@ -89,10 +90,13 @@ def emailImages():
 		server.sendmail(gmail_user, recipient, msg_bytes)
 		print("Email sent!")
 
+	# Add emailed images and corresponding text files to one list
+	image_files.append(oldest_txt_file)
+	
 	# Move files to destination directory so they aren't sent again
-	for file in [oldest_txt_file] + image_files:
+	for file in image_files:
 		time.sleep(1)
-		move(file, dst_dir)
+		file.rename(dst_dir / file.name)
 		print(f'File {file} moved')
 		
 	# Wait a few seconds before sending more emails
@@ -104,6 +108,7 @@ def emailImages():
 while True:
 	try:
 		emailImages()
-	except:
+	except Exception as e:
+		print(str(e))
 		time.sleep(5)
 		continue
