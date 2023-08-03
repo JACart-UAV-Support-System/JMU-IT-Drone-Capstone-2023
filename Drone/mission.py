@@ -127,7 +127,11 @@ vehicle.simple_goto(point)
 
 # delete old video and image files before recording new ones
 clean_folder("/video/location/path/videos/")
-clean_folder("/video/location/path/images/")
+clean_folder("/image/location/path/images/")
+clean_folder("/image/location/path/object-detected/")
+clean_folder("/image/location/path/no-detections/")
+clean_folder("/image/location/path/emailed-images/")
+
 
 # delete any residual videos
 if verbose:
