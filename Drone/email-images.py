@@ -1,10 +1,3 @@
-"""
-Emails images with objects detected via process-images.py as an alert via Gmail SMTP, 
-continously looks for files in given directory so they can be sent as soon as they're available.
-
-If the directory is empty, the terminal will print "min() arg is an empty sequence" until new images populate the directory.
-"""
-
 import os
 import ssl
 import smtplib
@@ -13,31 +6,27 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 from pathlib import Path
 
-# Set up Gmail SMTP server with app password for this script. Will update so the credentials aren't
-# stored as plaintext
-gmail_user = 'REPLACE WITH CAPSTONE EMAIL'
-gmail_password = 'REPLACE WITH PASSWORD'
+# Set the root path
+root_path = '/set/root/path/'
+
+# Set up Gmail SMTP server with app password for this script.
+gmail_user = 'REPLACE'
+gmail_password = 'REPLACE'
 smtp_server = 'smtp.gmail.com'
 smtp_port = 587
-recipient = 'dkahle8@gmail.com'
+recipient = 'REPLACE'
 
 # Sets up file paths
-src_dir = Path('object-detected')
-dst_dir = Path('emailed-images')
+src_dir = Path(os.path.join(root_path, 'object-detected'))
+dst_dir = Path(os.path.join(root_path, 'emailed-images'))
 
 # Sets up class names for given class digits to generate subject line
 class_dict = {
-	0: 'Pedestrian',
-	1: 'People',
-	2: 'Bicycle',
-	3: 'Car',
-	4: 'Van',
-	5: 'Truck',
-	6: 'Tricycle',
-	7: 'Awning-tricycle',
-	8: 'Bus',
-	9: 'Motor',
-        10: 'JACart'
+	0: 'Person',
+	1: 'Vehicle',
+	2: 'Tree',
+	3: 'Starship-bot',
+	4: 'JACART'
 }
 
 def emailImages():
