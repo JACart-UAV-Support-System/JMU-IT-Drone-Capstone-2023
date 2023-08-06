@@ -132,7 +132,6 @@ clean_folder("/image/location/path/object-detected/")
 clean_folder("/image/location/path/no-detections/")
 clean_folder("/image/location/path/emailed-images/")
 
-
 # delete any residual videos
 if verbose:
     print("Clearing old GoPro files")
@@ -152,7 +151,7 @@ if in_location == True:
     print(f"In location: {in_location}")
     record_video(2)
     
-# Save 10 frames from recorded video
+# Save 20 frames from recorded video
 video_files = glob.glob(video_location + "*.MP4")
 for video_file in video_files:
     duration = subprocess.check_output(["ffprobe", "-i", video_file, "-show_entries", "format=duration", "-v", "quiet", "-of", "csv=%s" % ("p=0")])
@@ -160,7 +159,7 @@ for video_file in video_files:
     frame_count = 20  # Number of frames to extract
     time_interval = duration / (frame_count + 1)  # Time interval between frames
 
-    output_folder = os.path.join('/home/jetson/test/images')
+    output_folder = os.path.join('/images/location/path/images')
     output_filename = os.path.basename(video_file)[:-4]
 
     subprocess.run([
@@ -179,15 +178,18 @@ ssh = paramiko.Transport(("REPLACE", REPLACE))
 
 # Load private key
 private_key_path = "/key/location/path/key"
-private_key = paramiko.RSAKey.from_private_key_file(private_key_path, 'daviddavid')
+private_key = paramiko.RSAKey.from_private_key_file(private_key_path, 'replace')
 
 # Connect to remote host using key authentication
-ssh.connect(username="david", pkey=private_key)
+ssh.connect(username="replace", pkey=private_key)
 
 # Copy files using SCP
+time.sleep(60)
 sftp = MySFTPClient.from_transport(ssh)
 sftp.put_dir("/local/video/path/videos/", "/remote/video/path/videos/")
 sftp.put_dir("/local/video/path/images/", "/local/video/path/images/")
+sftp.put_dir("/local/video/path/object-detected/", "/local/video/path/object-detected/")
+sftp.put_dir("/local/video/path/emailed-images/", "/local/video/path/emailed-images/")
 print("Images and files transferred to base server")
 sftp.close()
 ssh.close()
