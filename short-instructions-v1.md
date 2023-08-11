@@ -1,3 +1,5 @@
+# Basic Instructions for a Demo
+
 The aim of this document is to provide brief instructions for running a demo with our system. The login for the Jetson Nano is "jetson" "jetson".
 
 It is assumed that you'll be using an access point with both the base LAN server (such as a laptop running Ubuntu) and the UAV's Jetson Nano already connected to the 2.4Ghz network (further range). It's also assumed that the scripts on the base LAN server + the Jetson Nano have the correct IP addresses, credentials, file paths, and etc. already set. Each of the batteries should be fully charged, the UAV should be calibrated, etc. Finally, the base LAN server should have a folder named "test" in the home directory that has the same subfolders as the "test" directory has on the Jetson Nano, being "videos", "images", "emailed-images", "no-detections", and "object-detected".
