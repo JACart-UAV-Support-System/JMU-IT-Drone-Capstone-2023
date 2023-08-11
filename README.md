@@ -1,4 +1,4 @@
-## JMU's Autonomous Golf Cart (JACart) Automated UAV Support System
+# JMU's Autonomous Golf Cart (JACart) Automated UAV Support System
 
 ## Overview
 
